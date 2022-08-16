@@ -1,0 +1,17 @@
+USE [Food]
+GO
+IF NOT EXISTS(select * from sys.tables where name = 'Bread')
+BEGIN
+	CREATE TABLE [dbo].[Bread] (id varchar(36) not null, [type] varchar(255) not null, [displayName] varchar(255) not null, quantity float not null)
+
+	CREATE UNIQUE CLUSTERED INDEX [CI_Bread] ON [dbo].[Bread]
+	(
+		[type] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+
+	CREATE UNIQUE NONCLUSTERED INDEX [NC_Bread_Id] ON [dbo].[Bread]
+	(
+		[id] ASC
+	)
+	INCLUDE([type],[displayName],[quantity]) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+END
