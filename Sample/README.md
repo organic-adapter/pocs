@@ -17,3 +17,5 @@ You may have to include a port mapping -p 5432:5432
 
 - Create a user for api_user_access
 - Execute the scripts found in ../POSTGRESQL
+
+__If you use a GUI client that is in a docker container you will have to use the Docker Internal IP and port to connect to the PostgresSQL server.__

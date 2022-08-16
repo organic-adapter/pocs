@@ -17,5 +17,8 @@ BEGIN
 	, quantity
 	FROM [dbo].[Bread] as B
 	WHERE COALESCE(@id, B.id) = B.id
-	OR COALESCE(@type, B.[type]) = B.[type]
+	AND COALESCE(@type, B.[type]) = B.[type]
 END
+GO
+--DO NOT ADD THIS PRIOR TO THE END or GO
+GRANT EXECUTE ON BreadGet TO api_user_access
