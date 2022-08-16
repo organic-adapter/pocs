@@ -16,6 +16,6 @@ BEGIN
 	, displayName
 	, quantity
 	FROM [dbo].[Bread] as B
-	WHERE COALESCE(B.id, @id) = @id
-	AND COALESCE(B.[type], @type) = @type
+	WHERE COALESCE(@id, B.id) = B.id
+	OR COALESCE(@type, B.[type]) = B.[type]
 END
